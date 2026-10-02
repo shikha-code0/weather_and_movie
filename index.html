@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Weather App + Movie Search App — a JavaScript minor project using public REST APIs, Fetch API, and async/await." />
+    <title>Weather & Movie Search App</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%23e0e0e0' font-family='sans-serif'%3EW%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== Navigation ===== -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo" data-view="home">
+          <span class="logo-icon">🌤️</span>
+          <span>Weather & Movies</span>
+        </a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#" class="nav-link active" data-view="home">Home</a></li>
+          <li><a href="#" class="nav-link" data-view="weather">Weather</a></li>
+          <li><a href="#" class="nav-link" data-view="movies">Movies</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ===== Main Content ===== -->
+    <main class="main-content">
+
+      <!-- ===== Home View ===== -->
+      <section class="view view-home active" id="view-home" aria-label="Home page">
+        <div class="hero">
+          <h1 class="hero-title">Weather App + Movie Search App</h1>
+          <p class="hero-subtitle">
+            A JavaScript minor project that fetches live data from public REST APIs
+            using Fetch API, Promises, and async/await.
+          </p>
+          <p class="hero-tech">HTML5 · CSS3 · JavaScript ES6+ · REST APIs</p>
+        </div>
+
+        <div class="app-cards">
+          <article class="app-card weather-card" data-view="weather">
+            <div class="app-icon">🌤️</div>
+            <h2>Weather App</h2>
+            <p>Search for any city and see live temperature, humidity, wind speed, and more — powered by the Open-Meteo API.</p>
+            <button class="app-btn" data-view="weather">Open Weather App →</button>
+          </article>
+
+          <article class="app-card movie-card" data-view="movies">
+            <div class="app-icon">🎬</div>
+            <h2>Movie Search App</h2>
+            <p>Search for any movie and get posters, ratings, release dates, and full details — powered by the OMDb API.</p>
+            <button class="app-btn" data-view="movies">Open Movie Search →</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Weather View ===== -->
+      <section class="view view-weather" id="view-weather" aria-label="Weather application">
+        <div class="view-header">
+          <h1>🌤️ Weather App</h1>
+          <p>Enter a city name to get the current weather.</p>
+        </div>
+
+        <!-- Weather Form -->
+        <form class="search-form" id="weather-form">
+          <label for="city-input" class="sr-only">City name</label>
+          <input
+            type="text"
+            id="city-input"
+            name="city"
+            placeholder="e.g. Kanpur, London, Tokyo"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-btn" id="weather-search-btn">
+            <span class="btn-label">Search</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <!-- Status: loading / error / empty -->
+        <div class="status-message" id="weather-status"></div>
+
+        <!-- Weather Result Card -->
+        <div class="result-container" id="weather-result"></div>
+      </section>
+
+      <!-- ===== Movie View ===== -->
+      <section class="view view-movies" id="view-movies" aria-label="Movie search application">
+        <div class="view-header">
+          <h1>🎬 Movie Search App</h1>
+          <p>Enter a movie name to search the OMDb database.</p>
+        </div>
+
+        <!-- Movie Form -->
+        <form class="search-form" id="movie-form">
+          <label for="movie-input" class="sr-only">Movie name</label>
+          <input
+            type="text"
+            id="movie-input"
+            name="movie"
+            placeholder="e.g. Avengers, Inception, Titanic"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-btn" id="movie-search-btn">
+            <span class="btn-label">Search</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <!-- Status -->
+        <div class="status-message" id="movie-status"></div>
+
+        <!-- Movie Results -->
+        <div class="movie-results" id="movie-results"></div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <p>Weather & Movie Search App — JavaScript Minor Project</p>
+      <p class="footer-tech">Built with HTML5, CSS3, JavaScript ES6+, Fetch API & REST APIs</p>
+    </footer>
+
+    <!-- ===== Movie Details Modal ===== -->
+    <div class="modal-overlay" id="movie-modal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Close movie details">&times;</button>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Scripts loaded as ES6 modules -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
